@@ -1,0 +1,11 @@
+[package]
+name = "neko_runtime"
+version = "0.0.0"
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+# neko core
+neko_core.workspace = true
+# external crates
+pretty_env_logger.workspace = true
