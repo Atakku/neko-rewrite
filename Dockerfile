@@ -13,11 +13,11 @@ cargo build --release
 rm -rf src Cargo.toml.bak Cargo.toml
 EOF
 COPY . .
-RUN cargo build --release
+RUN cargo build --release -p neko_runtime
 
 # Runtime
 FROM debian:11-slim
 WORKDIR /app
 RUN apt-get update && apt-get install -y ca-certificates libssl1.1 openssl && rm -rf /var/lib/apt/lists/*
-COPY --from=neko /build/target/release/neko /app/neko
+COPY --from=neko /build/target/release/neko_runtime /app/neko
 CMD ["./neko"]
