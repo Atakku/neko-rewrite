@@ -1,5 +1,5 @@
 [workspace]
-members = ["core", "runtime"]
+members = ["core", "modules/*", "runtime"]
 resolver = "2"
 
 [workspace.package]
@@ -9,6 +9,7 @@ license = "MIT OR Apache-2.0"
 [workspace.dependencies]
 # local crates
 neko_core = { path = "core" }
+neko_cron = { path = "modules/cron" }
 # external crates
 axum = "0.6"
 chrono = "0.4"

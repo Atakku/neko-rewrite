@@ -1,4 +1,5 @@
 #syntax=docker/dockerfile:1.3-labs
+
 # Build rust
 FROM docker.io/rustlang/rust:nightly-slim as neko
 WORKDIR /build
