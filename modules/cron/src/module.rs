@@ -5,6 +5,10 @@
 use neko_core::*;
 use tokio_cron_scheduler::{Job, JobScheduler};
 
+pub mod macros;
+
+pub use tokio_cron_scheduler;
+
 module! {
   Cron {
     jobs: Vec<Job>
