@@ -7,9 +7,9 @@ use futures::future::BoxFuture;
 use neko_core::*;
 use std::net::Ipv4Addr;
 
-pub use axum;
-
 pub type Route = fn(Router) -> BoxFuture<'static, Res<Router>>;
+
+pub use axum;
 
 module! {
   Axum {
