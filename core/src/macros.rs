@@ -44,14 +44,3 @@ macro_rules! once_cell {
     }
   };
 }
-
-#[macro_export]
-macro_rules! export {
-  ($(pub use $module:ident::{$($ident:ident),*};)*) => {$(
-    #[macro_use]
-    pub mod $module;
-
-    #[allow(unused_imports)]
-    pub use $module::{$($ident),*};
-  )*};
-}

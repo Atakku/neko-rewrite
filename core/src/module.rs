@@ -41,7 +41,7 @@ macro_rules! module {
     }
     module!(@internal $module, $($tail)*);
   };
-  (@internal $module:ident, 
+  (@internal $module:ident,
     $(impl on_init($init_fw:tt) $init_block:block)?
     $(impl on_runtime($rt_self:tt) $rt_block:block)?
     $($(fn $fn_name:ident$(<$fn_gnn:tt:$fn_gnt:tt>)?($($fn_param:tt)*) $(-> $fn_ty:ty)? $fn_block:block)+)?

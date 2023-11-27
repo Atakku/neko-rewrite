@@ -2,8 +2,8 @@
 //
 // This project is dual licensed under MIT and Apache.
 
-use crate::{hasher::IdHasher, *};
 use futures::future::{join_all, LocalBoxFuture};
+use hasher::IdHasher;
 use std::{
   any::{type_name, Any, TypeId},
   collections::HashMap,
@@ -11,9 +11,23 @@ use std::{
 };
 use tokio::task::JoinHandle;
 
-pub type ModuleMap = HashMap<TypeId, Box<dyn Any>, BuildHasherDefault<IdHasher>>;
+mod hasher;
+mod macros;
+mod module;
+
+pub use futures;
+pub use log;
+pub use tokio;
+
+pub type Err = Box<dyn std::error::Error + Send + Sync>;
+pub type Res<T> = Result<T, Err>;
+pub type R = Res<()>;
+
+pub use module::Module;
+
+type ModuleMap = HashMap<TypeId, Box<dyn Any>, BuildHasherDefault<IdHasher>>;
 type OptFuture = Option<JoinHandle<R>>;
-pub type RtClosure = fn(&mut NekoFramework) -> Res<LocalBoxFuture<'static, Res<OptFuture>>>;
+type RtClosure = fn(&mut NekoFramework) -> Res<LocalBoxFuture<'static, Res<OptFuture>>>;
 
 #[derive(Default)]
 pub struct NekoFramework {
@@ -64,10 +78,7 @@ impl NekoFramework {
         .modules
         .get_mut(&TypeId::of::<T>())
         .and_then(|b| b.downcast_mut::<T>())
-        .ok_or(format!(
-          "Required module {} is not loaded",
-          type_name::<T>()
-        ))?,
+        .ok_or(format!("Required module {} is not loaded", type_name::<T>()))?,
     )
   }
 
@@ -78,10 +89,7 @@ impl NekoFramework {
         .remove(&TypeId::of::<T>())
         .and_then(|b| b.downcast::<T>().ok())
         .map(|b| *b)
-        .ok_or(format!(
-          "Required module {} is not loaded",
-          type_name::<T>()
-        ))?,
+        .ok_or(format!("Required module {} is not loaded", type_name::<T>()))?,
     )
   }
 }
