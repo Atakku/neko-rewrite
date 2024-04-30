@@ -1,0 +1,17 @@
+[package]
+name = "neko_discord_roles"
+version = "1.0.0"
+edition.workspace = true
+license.workspace = true
+
+[lib]
+path = "src/module.rs"
+
+[dependencies]
+# local crates
+neko_core.workspace = true
+neko_poise.workspace = true
+neko_sqlx.workspace = true
+neko_discord_cache.workspace = true
+# external crates
+poise.workspace = true

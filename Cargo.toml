@@ -1,5 +1,5 @@
 [workspace]
-members = ["core", "modules/*", "plugins/*", "runtime"]
+members = ["core", "modules/*", "plugins/*", "runtime", "procmacro", "proctest"]
 resolver = "2"
 
 [workspace.package]
@@ -11,7 +11,16 @@ license = "MIT OR Apache-2.0"
 neko_core = { path = "core" }
 neko_axum = { path = "modules/axum" }
 neko_cron = { path = "modules/cron" }
+neko_fluent = { path = "modules/fluent" }
+neko_poise = { path = "modules/poise" }
 neko_reqwest = { path = "modules/reqwest" }
+neko_sqlx = { path = "modules/sqlx" }
+neko_deezer_library = { path = "plugins/deezer_library" }
+neko_discord_cache = { path = "plugins/discord_cache" }
+neko_discord_roles = { path = "plugins/discord_roles" }
+neko_discord_whitelist = { path = "plugins/discord_whitelist" }
+neko_drg = { path = "plugins/drg" }
+neko_steam = { path = "plugins/steam" }
 # external crates
 axum = "0.6"
 chrono = "0.4"

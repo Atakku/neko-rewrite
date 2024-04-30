@@ -5,7 +5,14 @@ edition.workspace = true
 license.workspace = true
 
 [dependencies]
-# neko core
+# local crates
 neko_core.workspace = true
+neko_cron.workspace = true
+# neko modules
+neko_discord_cache.workspace = true
+neko_discord_roles.workspace = true
+neko_drg.workspace = true
+neko_steam.workspace = true
 # external crates
+log.workspace = true
 pretty_env_logger.workspace = true

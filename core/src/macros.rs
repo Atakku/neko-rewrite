@@ -44,3 +44,33 @@ macro_rules! once_cell {
     }
   };
 }
+
+#[macro_export]
+macro_rules! default {
+  (
+    $(#[$m:meta])*
+    $vis:vis struct $ident:ident;
+  ) => {
+    $(#[$m])*
+    #[derive(Default)]
+    $vis struct $ident;
+  };
+  (
+    $(#[$m:meta])*
+    $vis:vis struct $ident:ident {
+      $($fvis:vis $vident:ident: $vty:ty $(= $vexpr:expr)?),*$(,)?
+    }
+  ) => {
+    $(#[$m])*
+    $vis struct $ident {
+      $($fvis $vident: $vty),*
+    }
+    impl Default for $ident {
+      fn default() -> Self {
+        Self {
+          $($vident: this_or_that!(($($vexpr)?) or (Default::default()))),*
+        }
+      }
+    }
+  };
+}

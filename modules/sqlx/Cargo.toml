@@ -1,0 +1,15 @@
+[package]
+name = "neko_sqlx"
+version = "0.0.0"
+edition.workspace = true
+license.workspace = true
+
+[lib]
+path = "src/module.rs"
+
+[dependencies]
+neko_core.workspace = true
+# external crates
+sea-query.workspace = true
+sqlx.workspace = true
+sea-query-binder.workspace = true

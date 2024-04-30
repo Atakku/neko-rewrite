@@ -4,7 +4,7 @@
 
 use std::hash::Hasher;
 
-// https://docs.rs/http/0.2.5/src/http/extensions.rs.html#8-28
+// https://docs.rs/http/1.0.0/src/http/extensions.rs.html#8-28
 // With TypeIds as keys, there's no need to hash them. They are already hashes
 // themselves, coming from the compiler. The IdHasher just holds the u64 of
 // the TypeId, and then returns it, instead of doing any bit fiddling.
